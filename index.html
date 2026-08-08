@@ -1,0 +1,985 @@
+# Let's write a python script to build the complete website code (HTML/CSS/JS) and package it or display it clearly.
+# First, let's structure the website cleanly.
+
+html_content = """<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentimentos da Terra - Produtos Naturais e Artesanais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #1b4332;
+            --secondary-green: #2d6a4f;
+            --accent-gold: #d4af37;
+            --light-gold: #f4e285;
+            --bg-cream: #faf7f2;
+            --card-bg: #ffffff;
+            --text-dark: #2b2d42;
+            --text-muted: #6c757d;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* HEADER & NAVBAR */
+        header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, #0d231a 100%);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle, var(--light-gold) 0%, var(--accent-gold) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--light-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .cart-icon-btn {
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .cart-icon-btn:hover {
+            background: var(--accent-gold);
+            color: var(--primary-green);
+        }
+
+        .cart-count {
+            background-color: #e63946;
+            color: white;
+            font-size: 0.8rem;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(13, 35, 26, 0.85)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--light-gold);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        .hero-btn {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #b8860b 100%);
+            color: var(--primary-green);
+            padding: 0.8rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: var(--transition);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        /* CATEGORY FILTER */
+        .categories-container {
+            max-width: 1200px;
+            margin: 3rem auto 1rem;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 0.6rem 1.4rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-green);
+            transition: var(--transition);
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background: var(--primary-green);
+            color: var(--accent-gold);
+            border-color: var(--primary-green);
+            box-shadow: 0 4px 10px rgba(27, 67, 50, 0.2);
+        }
+
+        /* PRODUCTS GRID */
+        .catalog {
+            max-width: 1200px;
+            margin: 2rem auto 5rem;
+            padding: 0 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            border-color: var(--accent-gold);
+        }
+
+        .product-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .product-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .add-cart-btn {
+            background: var(--primary-green);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--secondary-green);
+            color: var(--light-gold);
+        }
+
+        /* ABOUT & MISSION SECTION */
+        .about-section {
+            background: #fff;
+            padding: 5rem 1rem;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        .founder-box {
+            background: var(--bg-cream);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-gold);
+            margin-top: 1.5rem;
+        }
+
+        .founder-box h4 {
+            color: var(--primary-green);
+            font-size: 1.1rem;
+        }
+
+        /* CART MODAL & SIDEBAR */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background: #fff;
+            z-index: 2001;
+            transition: right 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 1.5rem;
+            background: var(--primary-green);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .cart-header h3 {
+            color: var(--light-gold);
+            font-size: 1.3rem;
+        }
+
+        .close-cart-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+        }
+
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary-green);
+        }
+
+        .cart-item-price {
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.4rem;
+        }
+
+        .qty-btn {
+            background: #e2e8f0;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .remove-item-btn {
+            color: #e63946;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .freight-box {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .freight-box label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .freight-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .freight-input-group input {
+            flex-grow: 1;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .freight-input-group button {
+            background: var(--secondary-green);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 2px dashed #ddd;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #009ee3 0%, #0072bb 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 158, 227, 0.3);
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-green);
+            color: #fff;
+            padding: 3rem 1rem 1.5rem;
+            border-top: 3px solid var(--accent-gold);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--light-gold);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col p, .footer-col li {
+            color: #d1d5db;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--light-gold);
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .cart-sidebar {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo-container">
+                <div class="logo-icon">
+                    <i class="fa-solid => fa-tree"></i>
+                </div>
+                <span class="logo-text">Sentimentos da Terra</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#quem-somos">Quem Somos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <button class="cart-icon-btn" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Carrinho</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Sentimentos da Terra</h1>
+        <p>A força e a cura da natureza sintetizadas em saboaria e fitoterápicos artesanais para o cuidado do seu corpo, mente e alma.</p>
+        <a href="#catalogo" class="hero-btn">Explorar Coleção <i class="fa-solid fa-arrow-down" style="margin-left: 8px;"></i></a>
+    </section>
+
+    <!-- CATEGORIES -->
+    <div class="categories-container" id="catalogo">
+        <button class="category-btn active" onclick="filterCategory('todos')">Todos os Produtos</button>
+        <button class="category-btn" onclick="filterCategory('corpo')">Cuidados com o Corpo</button>
+        <button class="category-btn" onclick="filterCategory('fitoterapicos')">Fitoterápicos</button>
+        <button class="category-btn" onclick="filterCategory('casa')">Casa & Ambientes</button>
+        <button class="category-btn" onclick="filterCategory('exotericos')">Linha Exotérica</button>
+        <button class="category-btn" onclick="filterCategory('kits')">Kits Especiais</button>
+        <button class="category-btn" onclick="filterCategory('lembrancinhas')">Lembrancinhas</button>
+    </div>
+
+    <!-- CATALOG GRID -->
+    <section class="catalog">
+        <div class="products-grid" id="products-grid">
+            <!-- Produtos inseridos via JS -->
+        </div>
+    </section>
+
+    <!-- QUEM SOMOS -->
+    <section class="about-section" id="quem-somos">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>A Natureza é Nossa Fonte de Inspiração</h2>
+                <p>Somos uma empresa de produtos naturais que promove a reconexão com a energia da terra através de produtos artesanais feitos à mão, garantindo fragrâncias e propriedades terapêuticas únicas.</p>
+                <p>Cuidamos do corpo, mente e alma, ressignificando a rotina diária de cuidados pessoais com ingredientes limpos, sustentáveis e repletos de intenção positiva.</p>
+                
+                <div class="founder-box">
+                    <h4>Iara Alcântara — Fundadora</h4>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #555;">Pedagoga, Empresária, Artesã, Mãe e Vó. Paulistana apaixonada pela natureza e pesquisadora dos benefícios que as ervas trazem para o bem-estar corporal, mental e espiritual.</p>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80" alt="Produtos Artesanais" style="width: 100%; max-width: 450px; border-radius: 15px; box-shadow: var(--shadow); border: 2px solid var(--accent-gold);">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contato">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Sentimentos da Terra</h4>
+                <p>CNPJ: 55.919.082/0001-64</p>
+                <p>Embu-Guaçu / São Paulo - SP</p>
+                <p>Que a força da natureza esteja sempre com vocês!</p>
+            </div>
+            <div class="footer-col">
+                <h4>Atendimento & Pedidos</h4>
+                <p><i class="fa-brands fa-whatsapp"></i> (11) 91072-2913</p>
+                <p><i class="fa-brands fa-whatsapp"></i> (11) 99823-5691</p>
+                <p><i class="fa-solid fa-globe"></i> sentimentosdaterra.com.br</p>
+            </div>
+            <div class="footer-col">
+                <h4>Redes Sociais</h4>
+                <p>Siga nosso Instagram e acompanhe nossas novidades e rituais de autocuidado.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/sentimentos.terra" target="_blank"><i class="fa-brands fa-instagram"></i> @sentimentos.terra</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sentimentos da Terra. Todos os direitos reservados. Envio garantido via Correios a partir de Embu-Guaçu/SP.</p>
+        </div>
+    </footer>
+
+    <!-- CART SIDEBAR & OVERLAY -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-bag-shopping"></i> Seu Carrinho</h3>
+            <button class="close-cart-btn" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-body" id="cart-body">
+            <!-- Itens do carrinho inseridos dinamicamente -->
+        </div>
+        <div class="cart-footer">
+            <div class="freight-box">
+                <label for="cep-input"><i class="fa-solid fa-truck"></i> Simular Frete (Saída: Embu-Guaçu/SP):</label>
+                <div class="freight-input-group">
+                    <input type="text" id="cep-input" placeholder="00000-000" maxlength="9">
+                    <button onclick="calculateFreight()">Calcular</button>
+                </div>
+                <div id="freight-result" style="font-size: 0.85rem; margin-top: 0.4rem; color: var(--primary-green); font-weight: 600;"></div>
+            </div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row">
+                <span>Frete Estimado</span>
+                <span id="cart-freight">R$ 0,00</span>
+            </div>
+            <div class="summary-row summary-total">
+                <span>Total</span>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+
+            <button class="checkout-btn" onclick="processCheckout()">
+                <i class="fa-solid fa-lock"></i> Pagar com Mercado Pago
+            </button>
+        </div>
+    </div>
+
+    <!-- MERCADO PAGO SDK -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <script>
+        // CATÁLOGO COMPLETO EXTRAÍDO DO MATERIAL DA SENTIMENTOS DA TERRA
+        const products = [
+            // CUIDADOS COM O CORPO
+            { id: 1, name: "Sabonete Artesanal", category: "corpo", tag: "Cuidado Corporal", price: 13.97, desc: "Bambu, lima-limão, morango, bergamota, lavanda, flor de laranjeira, baunilha, canela, melancia ou alecrim.", img: "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=500&q=80" },
+            { id: 2, name: "Shampoo Artesanal Cúrcuma", category: "corpo", tag: "Cuidado Capilar", price: 16.97, desc: "Cúrcuma e bicarbonato — Limpeza profunda e antirresíduos natural.", img: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=500&q=80" },
+            { id: 3, name: "Condicionador Artesanal", category: "corpo", tag: "Cuidado Capilar", price: 16.97, desc: "Hidratação e reconstrução com vinagre de maçã, azeite de oliva e manteiga de karité.", img: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=500&q=80" },
+            { id: 4, name: "Colônia Pós-Banho", category: "corpo", tag: "Perfumaria", price: 20.97, desc: "Bergamota, lavanda e flor de laranjeira.", img: "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=500&q=80" },
+            { id: 5, name: "Desodorante Natural", category: "corpo", tag: "Cuidado Pessoal", price: 16.97, desc: "Alecrim e Melaleuca — Proteção natural sem alumínio.", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80" },
+            { id: 6, name: "Protetor Labial Natural", category: "corpo", tag: "Cuidado Pessoal", price: 19.97, desc: "Manteiga de cacau, óleo de coco e óleo de girassol.", img: "https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&w=500&q=80" },
+            { id: 7, name: "Óleo Corporal Terapêutico", category: "corpo", tag: "Hidratação", price: 19.97, desc: "Mix de óleos de coco, girassol e azeite de oliva. Fragrância Bambu ou Alecrim.", img: "https://images.unsplash.com/photo-1608248597263-000787db5b49?auto=format&fit=crop&w=500&q=80" },
+            { id: 8, name: "Tonificador Capilar", category: "corpo", tag: "Cuidado Capilar", price: 19.97, desc: "Alecrim, cravo e alho para fortalecimento e crescimento dos fios.", img: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=500&q=80" },
+
+            // FITOTERÁPICOS
+            { id: 9, name: "Gotas Terápicas", category: "fitoterapicos", tag: "Fitoterápico", price: 16.97, desc: "Flor de laranjeira, alecrim ou lima-limão.", img: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=500&q=80" },
+            { id: 10, name: "Sabonete Fitoterápico", category: "fitoterapicos", tag: "Ervas Especiais", price: 19.97, desc: "Mix de óleos essenciais e infusão de ervas: Alecrim, flor de laranjeira, limão ou gengibre.", img: "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=500&q=80" },
+            { id: 11, name: "Repelente Natural", category: "fitoterapicos", tag: "Proteção Natural", price: 29.97, desc: "Citronela, cravo e eucalipto.", img: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=500&q=80" },
+            { id: 12, name: "Pomada Natural Terapêutica", category: "fitoterapicos", tag: "Cuidado Terapêutico", price: 36.97, desc: "Gengibre, alecrim, lírio do brejo, canela de velho, tanchagem ou cravo.", img: "https://images.unsplash.com/photo-1567928257065-ee9ebc82c3c1?auto=format&fit=crop&w=500&q=80" },
+
+            // CASA E AMBIENTES
+            { id: 13, name: "Aromatizador de Ambientes", category: "casa", tag: "Aromaterapia", price: 16.97, desc: "Bambu, lima-limão, morango, bergamota, lavanda, flor de laranjeira, baunilha, canela, melancia ou alecrim.", img: "https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=500&q=80" },
+            { id: 14, name: "Odorizador de Ambientes Spray", category: "casa", tag: "Ambientes", price: 21.97, desc: "Alecrim, flor de laranjeira, lavanda ou lima-limão.", img: "https://images.unsplash.com/photo-1585336261026-870a782ae1b0?auto=format&fit=crop&w=500&q=80" },
+            { id: 15, name: "Incenso Artesanal Cone", category: "casa", tag: "Defumação", price: 34.97, desc: "Café, café com canela ou canela pura (Pote com 5 unidades).", img: "https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=500&q=80" },
+            { id: 16, name: "Água de Lençóis", category: "casa", tag: "Achego & Sono", price: 14.97, desc: "Aroma suave para borrifar em cama e travesseiros.", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=80" },
+            { id: 17, name: "Desinfetante Natural Vinagre & Ervas", category: "casa", tag: "Limpeza Consciente", price: 19.97, desc: "Vinagre de maçã, bicarbonato e eucalipto/pinho.", img: "https://images.unsplash.com/photo-1585336261026-870a782ae1b0?auto=format&fit=crop&w=500&q=80" },
+            { id: 18, name: "Sabão em Pedra Carvão Ativado", category: "casa", tag: "Limpeza Natural", price: 14.97, desc: "Carvão ativado e óleo de coco.", img: "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=500&q=80" },
+
+            // EXOTÉRICOS
+            { id: 19, name: "Kit Saúde, Paz e Felicidade", category: "exotericos", tag: "Ritual de Proteção", price: 59.97, desc: "1 Sabonete 7 ervas, 1 Pote de incenso 7 ervas, 1 Água de cheiro 7 ervas e 1 Patuá contra energias negativas.", img: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=500&q=80" },
+            { id: 20, name: "Kit Dinheiro em Pencas", category: "exotericos", tag: "Prosperidade", price: 59.97, desc: "Sabonete, incenso e água de cheiro de louro, canela, cravo e açúcar + Patuá da prosperidade.", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80" },
+            { id: 21, name: "Kit Da Magia à Sedução", category: "exotericos", tag: "Amor & Atração", price: 79.97, desc: "Sabonete e incenso de canela, cravo, noz moscada e anis + Óleo corporal de rosa vermelha e gengibre + Patuá do Amor.", img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=500&q=80" },
+
+            // KITS ESPECIAIS
+            { id: 22, name: "Kit Reservas da Natureza (10 Itens)", category: "kits", tag: "Coleção Premium", price: 159.97, desc: "3 Sabonetes artesanais, Shampoo, Condicionador, Odorizador, Incenso, Odorizador guarda-roupa, Água de lençóis e Ecobag exclusiva.", img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=500&q=80" },
+            { id: 23, name: "Kit Da Terra Para Você (4 Itens)", category: "kits", tag: "Cuidados Diários", price: 95.97, desc: "Sabonete fitoterápico, Repelente natural, Gotas terápicas e Pomada natural.", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80" },
+            { id: 24, name: "Kit Nosso Sentimento (4 Itens)", category: "kits", tag: "Bem-Estar", price: 81.97, desc: "Odorizador, Pote de incenso, Desinfetante e Aromatizador de ambiente.", img: "https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=500&q=80" },
+            { id: 25, name: "Kit Sabonetes Diversos", category: "kits", tag: "Saboaria", price: 49.97, desc: "Caixa presenteável com 4 sabonetes artesanais sortidos.", img: "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=500&q=80" },
+            { id: 26, name: "Kit Hidratação Capilar completo", category: "kits", tag: "Cabelos", price: 69.97, desc: "2 Shampoos artesanais, 2 Condicionadores artesanais e 1 Tonificador capilar.", img: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=500&q=80" },
+            { id: 27, name: "Kit Skincare Natural", category: "kits", tag: "Rosto", price: 69.97, desc: "Limpeza de cúrcuma/coco, Esfoliante de café, Máscara de argila branca e Hidratante de lírio do brejo.", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=80" },
+
+            // LEMBRANCINHAS
+            { id: 28, name: "Vela Granulada Perfumada (100g)", category: "lembrancinhas", tag: "Lembrancinhas", price: 11.97, desc: "Bambu, lima-limão, morango, bergamota, lavanda, baunilha ou alecrim.", img: "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=500&q=80" },
+            { id: 29, name: "Set Mini Sabonetes (5 Unidades)", category: "lembrancinhas", tag: "Lembrancinhas", price: 14.97, desc: "5 mini sabonetes delicados artesanais.", img: "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=500&q=80" },
+            { id: 30, name: "Flor de Pinha Odorizada (3 Unidades)", category: "lembrancinhas", tag: "Lembrancinhas", price: 4.97, desc: "3 flores de pinha naturais odorizadas.", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80" }
+        ];
+
+        let cart = [];
+        let freightValue = 0;
+
+        // INICIALIZAR
+        function renderProducts(filter = 'todos') {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'todos' ? products : products.filter(p => p.category === filter);
+
+            filtered.forEach(p => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <img src="${p.img}" alt="${p.name}" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">${p.tag}</span>
+                            <h3 class="product-title">${p.name}</h3>
+                            <p class="product-desc">${p.desc}</p>
+                            <div class="product-bottom">
+                                <span class="product-price">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                                <button class="add-cart-btn" onclick="addToCart(${p.id})">
+                                    <i class="fa-solid fa-plus"></i> Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderProducts(cat);
+        }
+
+        function addToCart(id) {
+            const prod = products.find(p => p.id === id);
+            const item = cart.find(c => c.id === id);
+
+            if (item) {
+                item.qty++;
+            } else {
+                cart.push({ ...prod, qty: 1 });
+            }
+
+            updateCartUI();
+            toggleCart(true);
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((acc, item) => acc + item.qty, 0);
+            document.getElementById('cart-count').innerText = count;
+
+            const body = document.getElementById('cart-body');
+            body.innerHTML = '';
+
+            if (cart.length === 0) {
+                body.innerHTML = `<div style="text-align: center; padding: 3rem 1rem; color: #888;"><i class="fa-solid fa-basket-shopping" style="font-size: 3rem; margin-bottom: 1rem;"></i><p>Seu carrinho está vazio.</p></div>`;
+            } else {
+                cart.forEach(item => {
+                    body.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <div class="cart-item-title">${item.name}</div>
+                                <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
+                                <div class="qty-controls">
+                                    <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                                    <span>${item.qty}</span>
+                                    <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="remove-item-btn" onclick="removeItem(${item.id})"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    `;
+                });
+            }
+
+            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            document.getElementById('cart-subtotal').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('cart-freight').innerText = `R$ ${freightValue.toFixed(2).replace('.', ',')}`;
+            document.getElementById('cart-total').innerText = `R$ ${(subtotal + freightValue).toFixed(2).replace('.', ',')}`;
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(c => c.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(c => c.id !== id);
+                }
+            }
+            updateCartUI();
+        }
+
+        function removeItem(id) {
+            cart = cart.filter(c => c.id !== id);
+            updateCartUI();
+        }
+
+        function toggleCart(forceOpen = false) {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            if (forceOpen || !sidebar.classList.contains('open')) {
+                sidebar.classList.add('open');
+                overlay.style.display = 'block';
+            } else {
+                sidebar.classList.remove('open');
+                overlay.style.display = 'none';
+            }
+        }
+
+        function calculateFreight() {
+            const cep = document.getElementById('cep-input').value.replace(/\D/g, '');
+            if (cep.length !== 8) {
+                alert("Por favor, digite um CEP válido com 8 dígitos.");
+                return;
+            }
+
+            // Simulação de frete baseada no CEP
+            if (cep.startsWith('0')) {
+                freightValue = 14.90; // Grande SP
+            } else if (cep.startsWith('1')) {
+                freightValue = 19.90; // Interior SP
+            } else {
+                freightValue = 27.90; // Outros Estados
+            }
+
+            document.getElementById('freight-result').innerText = `Frete calculado: R$ ${freightValue.toFixed(2).replace('.', ',')} (Correios)`;
+            updateCartUI();
+        }
+
+        // CHECKOUT MERCADO PAGO INTEGRATION
+        function processCheckout() {
+            if (cart.length === 0) {
+                alert("Seu carrinho está vazio!");
+                return;
+            }
+
+            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            const total = subtotal + freightValue;
+
+            // CONFIGURAÇÃO DO MERCADO PAGO
+            // Em produção real, você envia os itens para o seu backend para criar a preferência de pagamento de forma segura.
+            alert(`Iniciando Checkout seguro do Mercado Pago!\n\nTotal a pagar: R$ ${total.toFixed(2).replace('.', ',')}\nProdutos: ${cart.length} item(ns)\nSaída dos Correios: Embu-Guaçu/SP`);
+            
+            // Exemplo de redirecionamento ou ativação da preferência do Mercado Pago
+            // const mp = new MercadoPago('SUA_PUBLIC_KEY', { locale: 'pt-BR' });
+            // mp.checkout({ preference: { id: 'PREFERENCE_ID' } });
+        }
+
+        // Renderiza no carregamento da página
+        window.onload = () => {
+            renderProducts();
+        };
+    </script>
+</body>
+</html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("index.html created successfully!")
